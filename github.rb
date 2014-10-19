@@ -6,7 +6,7 @@ class Github
 
   def initialize(username, password)
     @auth = { :username => u, :password => p}
-    @bitbucket_repos = [{:name => 'dotfiles', :description => 'Github management.'}]
+    @bitbucket_repos = [{:name => 'dotfiles', :description => 'Dotfiles'}]
     # self.class.get "/", @auth
   end
 
