@@ -5,7 +5,7 @@ class Github
   base_uri "https://api.github.com"
 
   def initialize(username, password)
-    @auth = { username: u, password: p}
+    @auth = { :username => u, :password => p}
     @bitbucket_repos = [{:name => 'dotfiles', :description => 'Github management.'}]
     # self.class.get "/", @auth
   end
