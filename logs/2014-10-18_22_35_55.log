@@ -1,0 +1,4 @@
+# Logfile created on 2014-10-18 22:35:55 -0700 by logger.rb/44203
+I, [2014-10-18_22_35_55#66805]  INFO -- : : Cloning repo: git@bitbucket.org:robinrob/dotfiles.git
+I, [2014-10-18_22_36_13#66805]  INFO -- : : Creating new repositry: git@github.com:robinrob/dotfiles.git
+I, [2014-10-18_22_36_14#66805]  INFO -- : : Pushing to new repository: git@github.com:robinrob/dotfiles.git

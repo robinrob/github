@@ -1,0 +1,4 @@
+# Logfile created on 2014-12-13 14:04:38 +0000 by logger.rb/44203
+I, [2014-12-13_14_04_38#13290]  INFO -- : : Cloning repo: git@bitbucket.org:robinrob/dotfiles.git
+I, [2014-12-13_14_04_38#13290]  INFO -- : : Creating new repository in Github: git@github.com:robinrob/dotfiles.git
+I, [2014-12-13_14_04_38#13290]  INFO -- : : [0;31;49mResponse: {"message"=>"Validation Failed", "errors"=>[{"resource"=>"Repository", "code"=>"custom", "field"=>"name", "message"=>"name already exists on this account"}], "documentation_url"=>"https://developer.github.com/v3/repos/#create"}[0m

@@ -1,0 +1,4 @@
+# Logfile created on 2014-10-18 22:42:31 -0700 by logger.rb/44203
+I, [2014-10-18_22_42_31#68231]  INFO -- : : Cloning repo: git@bitbucket.org:robinrob/dotfiles.git
+I, [2014-10-18_22_42_31#68231]  INFO -- : : Creating new repository in Github: git@github.com:robinrob/dotfiles.git
+I, [2014-10-18_22_42_32#68231]  INFO -- : : Response: Request forbidden by administrative rules. Please make sure your request has a User-Agent header (http://developer.github.com/v3/#user-agent-required). Check https://developer.github.com for other possible causes.

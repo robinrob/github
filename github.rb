@@ -1,40 +1,61 @@
 require 'httparty'
+require 'app_logger'
+require 'colorize'
 
 class Github
   include HTTParty
   base_uri "https://api.github.com"
 
   def initialize(username, password)
-    @auth = { :username => u, :password => p}
-    @bitbucket_repos = [{:name => 'dotfiles', :description => 'Dotfiles'}]
-    # self.class.get "/", @auth
+    @auth = { :username => username, :password => password}
+
+    @log = AppLogger.new
   end
 
-  def import
-    @bitbucket_repos.each do |repo|
-      `git clone git@bitbucket.org:#{@auth[:username]}/#{repo[:name]}.git`
-      Dir.chdir "./#{repo[:name]}"
 
-      create_repo repo[:name], repo[:description]
-      `git remote add github git@github.com:#{@auth[:username]}/#{repo[:name]}.git`
+  public
+  def import_repo(repo_name)
+    repo_url = "git@bitbucket.org:#{@auth[:username]}/#{repo_name}.git"
+    new_url = "git@github.com:#{@auth[:username]}/#{repo[:name]}.git"
+
+    created = false
+    @log.info "Creating new repository in Github: #{new_url}"
+    response = create_repo repo[:name], repo[:description]
+    if response.has_key? "id"
+      @log.info "Request successful.".green
+      created = true
+    else
+      @log.info "Response: #{response}".red
+    end
+
+    if created
+      @log.info "Pushing to new repository: #{new_url}"
+      `git remote add github #{new_url}`
       `git push github master`
-
-      # Clean up
-      Dir.chdir ".."
-      `rm -rf #{repo[:name]}`
     end
   end
 
-  def create_repo name, description=""
-    options = {:body => {:name => name, :description => description}.to_json}
-    options.merge!({:basic_auth => @auth})
+
+  private
+  def create_repo(name, description="")
+    options = {
+        :body => {
+            :name => name, :description => description
+        }.to_json,
+        :basic_auth => @auth,
+        :headers => {
+            'User-Agent' => 'robinrob'
+        }
+    }
 
     response = self.class.post("/user/repos", options)
   end
 
+
   def delete_repo name
     self.class.delete("/repos/#{@auth[:username]}/#{name}", :basic_auth => @auth)
   end
+
 
   def test_request
     reponse = self.class.get("/users/#{@auth[:username]}/repos")
