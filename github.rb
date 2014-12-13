@@ -14,13 +14,13 @@ class Github
 
 
   public
-  def import_repo(repo_name)
+  def import(repo_name)
     repo_url = "git@bitbucket.org:#{@auth[:username]}/#{repo_name}.git"
-    new_url = "git@github.com:#{@auth[:username]}/#{repo[:name]}.git"
+    new_url = "git@github.com:#{@auth[:username]}/#{repo_name}.git"
 
     created = false
     @log.info "Creating new repository in Github: #{new_url}"
-    response = create_repo repo[:name], repo[:description]
+    response = create_repo repo_name, repo_name
     if response.has_key? "id"
       @log.info "Request successful.".green
       created = true
