@@ -14,7 +14,9 @@ class Github
 
 
   public
-  def import(repo_name)
+  def import
+    repo_name = `basename #{ENV['PWD']}`.strip
+
     repo_url = "git@bitbucket.org:#{@auth[:username]}/#{repo_name}.git"
     new_url = "git@github.com:#{@auth[:username]}/#{repo_name}.git"
 
