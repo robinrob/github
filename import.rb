@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
-$LOAD_PATH << '.'
+$LOAD_PATH << "#{ENV['RUBY_HOME']}/github/"
+
 
 require 'github'
 require 'app_config'
