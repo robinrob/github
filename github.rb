@@ -25,15 +25,12 @@ class Github
     response = create_repo repo_name, repo_name
     if response.has_key? "id"
       @log.info "Request successful.".green
-      created = true
-    else
-      @log.info "Response: #{response}".red
-    end
 
-    if created
       @log.info "Pushing to new repository: #{new_url}"
       `git remote add github #{new_url}`
       `git push github master`
+    else
+      @log.info "Response: #{response}".red
     end
   end
 
